@@ -12,8 +12,10 @@ import org.junit.rules.ExpectedException;
 
 public class SystemTestClass {
 	private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
-
+	private static final String WRONG_CSV_FILE_PATH = "desktop/IndiaStateCensusData.csv"; // no file present in this
+																							// path
 	// Default Test
+
 	@Ignore
 	@Test
 	public void test() {
@@ -21,6 +23,7 @@ public class SystemTestClass {
 	}
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
+	@Ignore
 	@Test
 	public void given_Indian_Census_CSV_File_Returns_Correct_Records() {
 		try {
@@ -31,4 +34,18 @@ public class SystemTestClass {
 		}
 	}
 
+	// Handles exception when wrong file is given as an input to loadIndiaCensusData
+	// function
+	@Test
+	public void given_India_Census_Data_With_Wrong_File_Should_Throw_Exception() {
+		try {
+			CensusAnalyzer censusAnalyser = new CensusAnalyzer();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
 }

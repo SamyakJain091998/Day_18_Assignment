@@ -42,14 +42,17 @@ public class CensusAnalyzer {
 //		}
 			return numberOfEntries;
 		} catch (IOException e) {
+			System.out.println("type : " + e.getClass());
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(),
 					CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
 		} catch (IllegalStateException e) {
+			System.out.println("type : " + e.getClass());
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(), 
 					CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
 		} catch (RuntimeException e) {
+			System.out.println("type : " + e.getClass());
 			throw new CensusAnalyserException(e.getMessage(),
 					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
 		}

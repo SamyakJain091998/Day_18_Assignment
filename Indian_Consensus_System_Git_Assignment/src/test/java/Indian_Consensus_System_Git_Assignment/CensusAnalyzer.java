@@ -24,7 +24,7 @@ public class CensusAnalyzer {
 
 	// Loads csv file, reads it and count the number of entries using stream api.
 	// Returns count
-	public int loadStateCode(String indiaCensusCSVFilePath) throws IOException {
+	public int loadStateCode(String indiaCensusCSVFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCSVFilePath));) {
 
 			CsvToBeanBuilder<IndiaStateCodeCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
@@ -34,14 +34,24 @@ public class CensusAnalyzer {
 			final Iterator<IndiaStateCodeCSV> stateCsvIterator = csvToBean.iterator();
 			Iterable<IndiaStateCodeCSV> csvIterable = () -> stateCsvIterator;
 
-			int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-			System.out.println("num of entries : " + numOfEntries);
+			int numberOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
 //		int numOfEntries = 0;
 //		while (censusCsvIterator.hasNext()) {
 //			numOfEntries++;
 //			IndiaCensusCSV censusData = censusCsvIterator.next();
 //		}
-			return numOfEntries;
+			return numberOfEntries;
+		} catch (IOException e) {
+			// TODO: handle exception
+			throw new CensusAnalyserException(e.getMessage(),
+					CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+		} catch (IllegalStateException e) {
+			// TODO: handle exception
+			throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+		} catch (RuntimeException e) {
+			throw new CensusAnalyserException(e.getMessage(),
+					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
 		}
 	}
+
 }

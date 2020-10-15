@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyzer {
+
+	// Loads csv file, reads it and count the number of entries using stream api.
+	// Returns count
 	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 

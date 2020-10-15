@@ -22,7 +22,7 @@ public class SystemTestClass {
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	@Test
-	public void givenIndianCensusCSVFileReturnsCorrectRecords() {
+	public void given_Indian_Census_CSV_File_Returns_Correct_Records() {
 		try {
 			CensusAnalyzer censusAnalyser = new CensusAnalyzer();
 			int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);

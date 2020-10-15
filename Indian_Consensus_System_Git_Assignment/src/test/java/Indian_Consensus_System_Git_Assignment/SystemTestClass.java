@@ -2,7 +2,6 @@ package Indian_Consensus_System_Git_Assignment;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.junit.Test;
@@ -23,12 +22,12 @@ public class SystemTestClass {
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	@Test
-	public void givenIndianCensusCSVFileReturnsCorrectRecords() throws IOException {
+	public void givenIndianCensusCSVFileReturnsCorrectRecords() {
 		try {
 			CensusAnalyzer censusAnalyser = new CensusAnalyzer();
 			int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			Assert.assertEquals(2, numOfRecords);
-		} catch (Exception e) {
+		} catch (CensusAnalyserException e) {
 		}
 	}
 

@@ -23,6 +23,7 @@ public class SystemTestClass {
 	}
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
+	//TC1.1
 	@Ignore
 	@Test
 	public void given_Indian_Census_CSV_File_Returns_Correct_Records() {
@@ -36,6 +37,7 @@ public class SystemTestClass {
 
 	// Handles exception when wrong file is given as an input to loadIndiaCensusData
 	// function
+	//TC1.2
 	@Test
 	public void given_India_Census_Data_With_Wrong_File_Should_Throw_Exception() {
 		try {

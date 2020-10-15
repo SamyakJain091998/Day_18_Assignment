@@ -15,6 +15,7 @@ public class SystemTestClass {
 	private static final String WRONG_CSV_FILE_PATH = "desktop/IndiaStateCensusData.csv"; // no file present in this
 	private static final String INDIA_CENSUS_EMPTY_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusDataEmpty.csv";
 	private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER = "./src/test/resources/IndiaStateCensusDataWrongDelimeter.csv";
+	private static final String INDIAN_CENSUS_CSV_WRONG_HEADER = "./src/test/resources/IndiaStateCensusDataWrongHeader.csv";
 	// path
 	// Default Test
 
@@ -74,6 +75,7 @@ public class SystemTestClass {
 	// loadIndiaCensusData
 	// function
 	// TC1.4
+	@Ignore
 	@Test
 	public void given_Wrong_Delimiter_In_India_Census_Data_Should_Return_Custom_Exception_Type() {
 		try {
@@ -82,6 +84,21 @@ public class SystemTestClass {
 		} catch (CensusAnalyserException e) {
 			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
 			System.out.println("e.type is : " + e.type);
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
+		}
+	}
+
+	// Handles exception when file with wrong headers is given as an input to
+	// loadIndiaCensusData
+	// function
+	// TC1.5
+	@Test
+	public void given_Missing_Header_In_India_Census_Data_Should_Return_Custom_Exception_Type() {
+		try {
+			CensusAnalyzer censusAnalyser = new CensusAnalyzer();
+			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_CSV_WRONG_HEADER);
+		} catch (CensusAnalyserException e) {
+			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
 		}
 	}

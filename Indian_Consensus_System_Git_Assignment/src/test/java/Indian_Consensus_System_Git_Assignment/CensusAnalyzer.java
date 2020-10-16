@@ -53,6 +53,7 @@ public class CensusAnalyzer {
 					CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
 		} catch (RuntimeException e) {
 			System.out.println("type : " + e.getClass());
+			System.out.println("exception msg is : " + e.getMessage());
 			throw new CensusAnalyserException(e.getMessage(),
 					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
 		}

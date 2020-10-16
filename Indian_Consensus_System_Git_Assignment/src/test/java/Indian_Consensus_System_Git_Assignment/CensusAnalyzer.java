@@ -29,11 +29,8 @@ public class CensusAnalyzer {
 
 			final Iterator<IndiaCensusCSV> censusCsvIterator = this.returnsIteratorToTheLoadingFunction(reader,
 					IndiaCensusCSV.class);
-			Iterable<IndiaCensusCSV> csvIterable = () -> censusCsvIterator;
-
-			int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-			System.out.println("num of entries : " + numOfEntries);
-			return numOfEntries;
+			
+			return returnsCountOfEntries(censusCsvIterator, IndiaCensusCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(),
@@ -51,10 +48,8 @@ public class CensusAnalyzer {
 
 			final Iterator<IndiaStateCodeCSV> StateIterator = this.returnsIteratorToTheLoadingFunction(reader,
 					IndiaStateCodeCSV.class);
-			Iterable<IndiaStateCodeCSV> csvIterable = () -> StateIterator;
-
-			int numberOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-			return numberOfEntries;
+			
+			return returnsCountOfEntries(StateIterator, IndiaStateCodeCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(),
@@ -66,6 +61,12 @@ public class CensusAnalyzer {
 		}
 	}
 
+	private <E> int returnsCountOfEntries(Iterator<E> iterator, Class csvClass) {
+		Iterable<E> csvIterable = () -> iterator;
+		int numberOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
+		return numberOfEntries;
+	}
+	
 	private <E> Iterator<E> returnsIteratorToTheLoadingFunction(Reader reader, Class csvClass)
 			throws CensusAnalyserException {
 		try {

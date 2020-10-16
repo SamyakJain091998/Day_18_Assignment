@@ -11,7 +11,7 @@ public class OpenCSVBuilder {
 	public OpenCSVBuilder() {
 	}
 
-	public <E> Iterator<E> returnsIteratorToTheLoadingFunction(Reader reader, Class csvClass)
+	protected <E> Iterator<E> returnsIteratorToTheLoadingFunction(Reader reader, Class csvClass)
 			throws CensusAnalyserException {
 		try {
 			CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);

@@ -27,7 +27,7 @@ public class SystemTestClass {
 	}
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
-	// TC1.1
+	// TC2.1
 	@Ignore
 	@Test
 	public void given_Indian_State_CSV_Should_Return_Exact_Count() {
@@ -39,6 +39,9 @@ public class SystemTestClass {
 		}
 	}
 
+	// Throws a custom exception when a wrong file (wrong file path) is given as an
+	// input to the function.
+	// TC2.2
 	@Ignore
 	@Test
 	public void given_Indian_State_Data_With_Wrong_File_Should_Throw_Exception() {
@@ -53,6 +56,9 @@ public class SystemTestClass {
 		}
 	}
 
+	// Throws a custom exception when an empty file is given as an
+	// input to the function.
+	// TC2.3
 	@Ignore
 	@Test
 	public void given_Empty_State_Data_Csv_File_Should_Return_Custom_Exception_Type() {
@@ -67,6 +73,9 @@ public class SystemTestClass {
 		}
 	}
 
+	// Throws a custom exception when a file with wrong delimeter is given as an
+	// input to the function.
+	// TC2.4
 	@Ignore
 	@Test
 	public void given_Wrong_Delimiter_In_India_State_Data_Should_Return_Custom_Exception_Type() {
@@ -81,6 +90,9 @@ public class SystemTestClass {
 		}
 	}
 
+	// Throws a custom exception when a file with missing header is given as an
+	// input to the function.
+	// TC2.5
 	@Test
 	public void given_Missing_Header_In_India_State_Data_Should_Return_Custom_Exception_Type() {
 		try {

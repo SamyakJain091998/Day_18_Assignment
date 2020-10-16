@@ -97,7 +97,6 @@ public class SystemTestClass {
 	public void given_Missing_Header_In_India_State_Data_Should_Return_Custom_Exception_Type() {
 		try {
 			int numberOfEntries = censusAnalyser.loadStateCode(INDIAN_STATE_CSV_WRONG_HEADER);
-			System.out.println("Here " + numberOfEntries);
 		} catch (CensusAnalyserException e) {
 			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);

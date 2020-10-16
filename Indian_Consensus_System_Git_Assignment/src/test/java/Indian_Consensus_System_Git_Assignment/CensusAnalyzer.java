@@ -20,14 +20,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-public class CensusAnalyzer extends OpenCSVBuilder {
+public class CensusAnalyzer {
 
 	// Loads csv file, reads it and count the number of entries using stream api.
 	// Returns count
 	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 
-			final Iterator<IndiaCensusCSV> censusCsvIterator = returnsIteratorToTheLoadingFunction(reader,
+			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
+
+			Iterator<IndiaCensusCSV> censusCsvIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
 					IndiaStateCodeCSV.class);
 
 			return returnsCountOfEntries(censusCsvIterator, IndiaCensusCSV.class);
@@ -45,8 +47,8 @@ public class CensusAnalyzer extends OpenCSVBuilder {
 	// Returns count
 	public int loadStateCode(String indiaStateCSVFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(indiaStateCSVFilePath));) {
-
-			final Iterator<IndiaStateCodeCSV> StateIterator = returnsIteratorToTheLoadingFunction(reader,
+			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
+			Iterator<IndiaStateCodeCSV> StateIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
 					IndiaStateCodeCSV.class);
 
 			return returnsCountOfEntries(StateIterator, IndiaStateCodeCSV.class);

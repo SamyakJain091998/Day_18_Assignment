@@ -5,5 +5,5 @@ import java.util.Iterator;
 
 public interface ICSVBuilder<E> {
 	public Iterator<E> returnsIteratorToTheLoadingFunction(Reader reader, Class csvClass)
-			throws CensusAnalyserException;
+			throws CensusAnalyserException, CSVException;
 }

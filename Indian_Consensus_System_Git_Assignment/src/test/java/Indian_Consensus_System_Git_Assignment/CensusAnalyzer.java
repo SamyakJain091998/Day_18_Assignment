@@ -27,9 +27,9 @@ public class CensusAnalyzer {
 	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 
-			final Iterator<IndiaCensusCSV> censusCsvIterator = this.returnsIteratorToTheLoadingFunction(reader,
-					IndiaCensusCSV.class);
-			
+			final Iterator<IndiaCensusCSV> censusCsvIterator = new OpenCSVBuilder()
+					.returnsIteratorToTheLoadingFunction(reader, IndiaStateCodeCSV.class);
+
 			return returnsCountOfEntries(censusCsvIterator, IndiaCensusCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
@@ -46,9 +46,9 @@ public class CensusAnalyzer {
 	public int loadStateCode(String indiaStateCSVFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(indiaStateCSVFilePath));) {
 
-			final Iterator<IndiaStateCodeCSV> StateIterator = this.returnsIteratorToTheLoadingFunction(reader,
-					IndiaStateCodeCSV.class);
-			
+			final Iterator<IndiaStateCodeCSV> StateIterator = new OpenCSVBuilder()
+					.returnsIteratorToTheLoadingFunction(reader, IndiaStateCodeCSV.class);
+
 			return returnsCountOfEntries(StateIterator, IndiaStateCodeCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
@@ -65,19 +65,5 @@ public class CensusAnalyzer {
 		Iterable<E> csvIterable = () -> iterator;
 		int numberOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
 		return numberOfEntries;
-	}
-	
-	private <E> Iterator<E> returnsIteratorToTheLoadingFunction(Reader reader, Class csvClass)
-			throws CensusAnalyserException {
-		try {
-			CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-			csvToBeanBuilder.withType(csvClass);
-			csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-			CsvToBean<E> csvToBean = csvToBeanBuilder.build();
-			return csvToBean.iterator();
-		} catch (IllegalStateException e) {
-			// TODO: handle exception
-			throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
-		}
 	}
 }

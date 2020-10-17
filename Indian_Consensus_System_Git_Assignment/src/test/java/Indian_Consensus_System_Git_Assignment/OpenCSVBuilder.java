@@ -8,6 +8,8 @@ import static com.CSVExceptionJar.CSVException.CSVExceptionType.UNABLE_TO_PARSE;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.csv.CSVParser;
 
 public class OpenCSVBuilder<E> implements ICSVBuilder<E> {
 

@@ -25,7 +25,7 @@ public class CensusAnalyzer {
 
 	// Loads csv file, reads it and count the number of entries using stream api.
 	// Returns count
-	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException, com.CSVExceptionJar.CSVException {
+	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException, CSVException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 
 			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
@@ -46,7 +46,7 @@ public class CensusAnalyzer {
 
 	// Loads csv file, reads it and count the number of entries using stream api.
 	// Returns count
-	public int loadStateCode(String indiaStateCSVFilePath) throws CensusAnalyserException, com.CSVExceptionJar.CSVException {
+	public int loadStateCode(String indiaStateCSVFilePath) throws CensusAnalyserException, CSVException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(indiaStateCSVFilePath));) {
 			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
 			Iterator<IndiaStateCodeCSV> StateIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,

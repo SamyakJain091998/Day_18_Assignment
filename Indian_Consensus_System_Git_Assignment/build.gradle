@@ -30,10 +30,15 @@ dependencies {
 	
 	compile group: 'com.opencsv', name: 'opencsv', version: '4.6'
 	
-	
-    
 }
 
 dependencies{
 	compile 'com.google.code.gson:gson:2.2.+'
+}
+
+
+dependencies {
+    compile files('C:/Users/PC/Desktop/Capgemini stuff/Day_18_Assignment/Indian_Consensus_System_Git_Assignment/CSVExceptionJar.jar')
+    // implemention files('C:/Users/PC/Desktop/Capgemini stuff/Day_18_Assignment/Indian_Consensus_System_Git_Assignment/CSVExceptionJar.jar')
+    
 }

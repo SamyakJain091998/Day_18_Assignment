@@ -46,7 +46,7 @@ public class SystemTestClass {
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	// TC1.1
 	@Test
-	public void given_Indian_Census_CSV_File_Returns_Correct_Records() throws CSVException {
+	public void given_Indian_Census_CSV_File_Returns_Correct_Records() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			Assert.assertEquals(2, numberOfEntries);
@@ -58,7 +58,7 @@ public class SystemTestClass {
 	// function
 	// TC1.2
 	@Test
-	public void given_India_Census_Data_With_Wrong_File_Should_Throw_Exception() throws CSVException {
+	public void given_India_Census_Data_With_Wrong_File_Should_Throw_Exception() throws com.CSVExceptionJar.CSVException {
 		try {
 			censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH);
 		} catch (CensusAnalyserException e) {
@@ -72,7 +72,7 @@ public class SystemTestClass {
 	// function
 	// TC1.3
 	@Test
-	public void given_Empty_Csv_File_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Empty_Csv_File_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_EMPTY_CSV_FILE_PATH);
 		} catch (CensusAnalyserException e) {
@@ -86,7 +86,7 @@ public class SystemTestClass {
 	// function
 	// TC1.4
 	@Test
-	public void given_Wrong_Delimiter_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Wrong_Delimiter_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_CSV_WRONG_DELIMITER);
 		} catch (CensusAnalyserException e) {
@@ -100,7 +100,7 @@ public class SystemTestClass {
 	// function
 	// TC1.5
 	@Test
-	public void given_Missing_Header_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Missing_Header_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_CSV_WRONG_HEADER);
 		} catch (CensusAnalyserException e) {
@@ -114,7 +114,7 @@ public class SystemTestClass {
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	// TC2.1
 	@Test
-	public void given_Indian_State_CSV_Should_Return_Exact_Count() throws CSVException {
+	public void given_Indian_State_CSV_Should_Return_Exact_Count() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfStateCode = censusAnalyser.loadStateCode(INDIAN_CSV_STATE_PATH);
 			Assert.assertEquals(2, numberOfStateCode);
@@ -126,7 +126,7 @@ public class SystemTestClass {
 	// input to the function.
 	// TC2.2
 	@Test
-	public void given_Indian_State_Data_With_Wrong_File_Should_Throw_Exception() throws CSVException {
+	public void given_Indian_State_Data_With_Wrong_File_Should_Throw_Exception() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadStateCode(STATE_DATA_CSV_FILE_WRONG_PATH);
 		} catch (CensusAnalyserException e) {
@@ -139,7 +139,7 @@ public class SystemTestClass {
 	// input to the function.
 	// TC2.3
 	@Test
-	public void given_Empty_State_Data_Csv_File_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Empty_State_Data_Csv_File_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadStateCode(INDIAN_STATE_DATA_EMPTY_FILE);
 		} catch (CensusAnalyserException e) {
@@ -152,7 +152,7 @@ public class SystemTestClass {
 	// input to the function.
 	// TC2.4
 	@Test
-	public void given_Wrong_Delimiter_In_India_State_Data_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Wrong_Delimiter_In_India_State_Data_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadStateCode(INDIAN_STATE_CSV_WRONG_DELIMITER);
 		} catch (CensusAnalyserException e) {
@@ -165,7 +165,7 @@ public class SystemTestClass {
 	// input to the function.
 	// TC2.5
 	@Test
-	public void given_Missing_Header_In_India_State_Data_Should_Return_Custom_Exception_Type() throws CSVException {
+	public void given_Missing_Header_In_India_State_Data_Should_Return_Custom_Exception_Type() throws com.CSVExceptionJar.CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadStateCode(INDIAN_STATE_CSV_WRONG_HEADER);
 		} catch (CensusAnalyserException e) {

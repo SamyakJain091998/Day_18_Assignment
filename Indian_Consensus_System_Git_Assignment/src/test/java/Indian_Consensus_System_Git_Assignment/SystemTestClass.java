@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.rules.ExpectedException;
 import com.CSVExceptionJar.*;
+import com.google.gson.Gson;
 
 public class SystemTestClass {
 
@@ -38,6 +39,7 @@ public class SystemTestClass {
 
 	// path
 	// Default Test
+	@Ignore
 	@Test
 	public void test() {
 		Assert.assertEquals(true, true);
@@ -46,15 +48,28 @@ public class SystemTestClass {
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	// TC1.1
 	@Test
+	@Ignore
 	public void given_Indian_Census_CSV_File_Returns_Correct_Records() throws CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			Assert.assertEquals(2, numberOfEntries);
 		} catch (CensusAnalyserException e) {
-			e.printStackTrace();
 		}
 	}
 
+	@Test
+	public void given_Indian_Census_Data_When_Sorted_Basis_State_Should_Return_Sorted_Output() throws CSVException {
+		try {
+//			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+			String sortedCensusData = censusAnalyser.getStateWiseSortedData(INDIA_CENSUS_CSV_FILE_PATH);
+			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+			System.out.println("string is : " + censusCSV[0].state);
+			Assert.assertEquals("Maharashtra", censusCSV[0].state);
+		} catch (CensusAnalyserException e) {
+			// TODO: handle exception
+		}
+	}
+	
 	// Handles exception when wrong file is given as an input to loadIndiaCensusData
 	// function
 	// TC1.2
@@ -123,7 +138,6 @@ public class SystemTestClass {
 	public void given_Indian_State_CSV_Should_Return_Exact_Count() throws CSVException {
 		try {
 			int numberOfStateCode = censusAnalyser.loadStateCode(INDIAN_CSV_STATE_PATH);
-			System.out.println("num :" + numberOfStateCode);
 			Assert.assertEquals(2, numberOfStateCode);
 		} catch (CensusAnalyserException e) {
 		}

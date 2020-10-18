@@ -57,7 +57,6 @@ public class OpenCSVBuilder<E> implements ICSVBuilder<E> {
 			 */
 		} catch (IllegalStateException e) {
 			// TODO: handle exception
-			System.out.println("type is : " + e.getMessage());
 			throw new CSVException(e.getMessage(), CSVException.CSVExceptionType.UNABLE_TO_PARSE);
 		}
 //		System.out.println(this.getCSVBean(reader, csvClass).parse());

@@ -11,7 +11,7 @@ public interface ICSVBuilder<E> {
 			throws CSVException;
 	
 	public List<E> returnsListToTheLoadingFunction(Reader reader, Class csvClass)
-			throws CSVException, CensusAnalyserException;
+			throws CSVException;
 	
 	
 }

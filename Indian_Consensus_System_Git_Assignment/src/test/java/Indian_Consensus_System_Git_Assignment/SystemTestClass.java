@@ -58,18 +58,23 @@ public class SystemTestClass {
 	}
 
 	@Test
-	public void given_Indian_Census_Data_When_Sorted_Basis_State_Should_Return_Sorted_Output() throws CSVException {
+	public void given_Indian_Census_Data_When_Sorted_Basis_State_Should_Return_Sorted_Output()
+			throws CensusAnalyserException, CSVException {
 		try {
-//			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-			String sortedCensusData = censusAnalyser.getStateWiseSortedData(INDIA_CENSUS_CSV_FILE_PATH);
+			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+			String sortedCensusData = censusAnalyser.getStateWiseSortedData();
 			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-			System.out.println("string is : " + censusCSV[0].state);
+			// System.out.println("string is : " + censusCSV[0].state);
+			// System.out.println("string is : " + censusCSV[1].state);
 			Assert.assertEquals("Maharashtra", censusCSV[0].state);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
+			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
 		}
 	}
-	
+
 	// Handles exception when wrong file is given as an input to loadIndiaCensusData
 	// function
 	// TC1.2

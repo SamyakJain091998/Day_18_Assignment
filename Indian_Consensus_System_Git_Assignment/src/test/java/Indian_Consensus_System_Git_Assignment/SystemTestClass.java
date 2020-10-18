@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.rules.ExpectedException;
 import com.CSVExceptionJar.*;
+
 public class SystemTestClass {
 
 	private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
@@ -37,7 +38,6 @@ public class SystemTestClass {
 
 	// path
 	// Default Test
-	@Ignore
 	@Test
 	public void test() {
 		Assert.assertEquals(true, true);
@@ -51,12 +51,14 @@ public class SystemTestClass {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			Assert.assertEquals(2, numberOfEntries);
 		} catch (CensusAnalyserException e) {
+			e.printStackTrace();
 		}
 	}
 
 	// Handles exception when wrong file is given as an input to loadIndiaCensusData
 	// function
 	// TC1.2
+	@Ignore
 	@Test
 	public void given_India_Census_Data_With_Wrong_File_Should_Throw_Exception() throws CSVException {
 		try {
@@ -71,6 +73,7 @@ public class SystemTestClass {
 	// loadIndiaCensusData
 	// function
 	// TC1.3
+	@Ignore
 	@Test
 	public void given_Empty_Csv_File_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {
@@ -85,6 +88,7 @@ public class SystemTestClass {
 	// loadIndiaCensusData
 	// function
 	// TC1.4
+	@Ignore
 	@Test
 	public void given_Wrong_Delimiter_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {
@@ -99,6 +103,7 @@ public class SystemTestClass {
 	// loadIndiaCensusData
 	// function
 	// TC1.5
+	@Ignore
 	@Test
 	public void given_Missing_Header_In_India_Census_Data_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {
@@ -113,10 +118,12 @@ public class SystemTestClass {
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	// TC2.1
+	@Ignore
 	@Test
 	public void given_Indian_State_CSV_Should_Return_Exact_Count() throws CSVException {
 		try {
 			int numberOfStateCode = censusAnalyser.loadStateCode(INDIAN_CSV_STATE_PATH);
+			System.out.println("num :" + numberOfStateCode);
 			Assert.assertEquals(2, numberOfStateCode);
 		} catch (CensusAnalyserException e) {
 		}
@@ -125,6 +132,7 @@ public class SystemTestClass {
 	// Throws a custom exception when a wrong file (wrong file path) is given as an
 	// input to the function.
 	// TC2.2
+	@Ignore
 	@Test
 	public void given_Indian_State_Data_With_Wrong_File_Should_Throw_Exception() throws CSVException {
 		try {
@@ -138,6 +146,7 @@ public class SystemTestClass {
 	// Throws a custom exception when an empty file is given as an
 	// input to the function.
 	// TC2.3
+	@Ignore
 	@Test
 	public void given_Empty_State_Data_Csv_File_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {
@@ -151,6 +160,7 @@ public class SystemTestClass {
 	// Throws a custom exception when a file with wrong delimeter is given as an
 	// input to the function.
 	// TC2.4
+	@Ignore
 	@Test
 	public void given_Wrong_Delimiter_In_India_State_Data_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {
@@ -164,6 +174,7 @@ public class SystemTestClass {
 	// Throws a custom exception when a file with missing header is given as an
 	// input to the function.
 	// TC2.5
+	@Ignore
 	@Test
 	public void given_Missing_Header_In_India_State_Data_Should_Return_Custom_Exception_Type() throws CSVException {
 		try {

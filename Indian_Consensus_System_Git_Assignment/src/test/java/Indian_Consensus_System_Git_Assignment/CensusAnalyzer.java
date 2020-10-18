@@ -29,16 +29,19 @@ public class CensusAnalyzer {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 
 			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
-
-			Iterator<IndiaCensusCSV> censusCsvIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
-					IndiaStateCodeCSV.class);
-
-			return returnsCountOfEntries(censusCsvIterator, IndiaCensusCSV.class);
+//			Iterator<IndiaCensusCSV> censusCsvIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
+//					IndiaCensusCSV.class);
+			List<IndiaCensusCSV> IndiaCSVList = csvBuilder.returnsListToTheLoadingFunction(reader,
+					IndiaCensusCSV.class);
+			return IndiaCSVList.size();
+//			return returnsCountOfEntries(censusCsvIterator, IndiaCensusCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(),
 					CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
 		} catch (RuntimeException e) {
+			e.printStackTrace();
+			System.out.println("e.egtmesg() : " + e.getMessage());
 			throw new CensusAnalyserException(e.getMessage(),
 					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
 		}
@@ -49,10 +52,12 @@ public class CensusAnalyzer {
 	public int loadStateCode(String indiaStateCSVFilePath) throws CensusAnalyserException, CSVException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(indiaStateCSVFilePath));) {
 			ICSVBuilder csvBuilder = CSVBuilderFactor.createCSVBuilder();
-			Iterator<IndiaStateCodeCSV> StateIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
+//			Iterator<IndiaStateCodeCSV> StateIterator = csvBuilder.returnsIteratorToTheLoadingFunction(reader,
+//					IndiaStateCodeCSV.class);
+			List<IndiaStateCodeCSV> IndiaStateCodeCSVList = csvBuilder.returnsListToTheLoadingFunction(reader,
 					IndiaStateCodeCSV.class);
-
-			return returnsCountOfEntries(StateIterator, IndiaStateCodeCSV.class);
+			return IndiaStateCodeCSVList.size();
+//			return returnsCountOfEntries(StateIterator, IndiaStateCodeCSV.class);
 		} catch (IOException e) {
 			// TODO: handle exception
 			throw new CensusAnalyserException(e.getMessage(),

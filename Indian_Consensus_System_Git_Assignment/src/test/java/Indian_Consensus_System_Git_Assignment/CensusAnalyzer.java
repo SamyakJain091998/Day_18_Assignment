@@ -101,6 +101,16 @@ public class CensusAnalyzer {
 		String sortedStateCensusJson = new Gson().toJson(IndiaCSVList);
 		return sortedStateCensusJson;
 	}
+	
+	public String getAreaWiseSortedData() throws CensusAnalyserException {
+		if (IndiaCSVList == null || IndiaCSVList.size() == 0) {
+			throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+		}
+		Comparator<IndiaCensusCSV> censusComparator = Comparator.comparing(census -> census.areaInSqKm);
+		this.sortCensus(censusComparator);
+		String sortedStateCensusJson = new Gson().toJson(IndiaCSVList);
+		return sortedStateCensusJson;
+	}
 
 	public String getStateCodeWiseSortedData() throws CensusAnalyserException {
 		if (IndiaStateCodeCSVList == null || IndiaStateCodeCSVList.size() == 0) {

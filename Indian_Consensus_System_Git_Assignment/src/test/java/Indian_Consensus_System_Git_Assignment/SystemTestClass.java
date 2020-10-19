@@ -47,8 +47,8 @@ public class SystemTestClass {
 
 	// Checks if the number of entries in IndiaStateCensusData.csv file equals 2.
 	// TC1.1
-	@Test
 	@Ignore
+	@Test
 	public void given_Indian_Census_CSV_File_Returns_Correct_Records() throws CSVException {
 		try {
 			int numberOfEntries = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -58,18 +58,14 @@ public class SystemTestClass {
 	}
 
 //	Sort function basis state name
-	@Ignore
 	@Test
 	public void given_Indian_Census_Data_When_Sorted_Basis_State_Should_Return_Sorted_Output()
 			throws CensusAnalyserException, CSVException {
 		try {
-			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			String sortedCensusData = censusAnalyser.getStateWiseSortedData();
 			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-			// System.out.println("string is : " + censusCSV[0].state);
-			// System.out.println("string is : " + censusCSV[1].state);
-			Assert.assertEquals("Maharashtra", censusCSV[0].state);
+			Assert.assertEquals("Uttar Pradesh", censusCSV[0].state);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
 			System.out.println("Oops! There's an exception, but it's handled. So, no worries...");
@@ -78,17 +74,13 @@ public class SystemTestClass {
 	}
 
 //	Sort function basis state population
-	@Ignore
 	@Test
 	public void given_Indian_Census_Data_When_Sorted_Basis_Population_Should_Return_Sorted_Output()
 			throws CensusAnalyserException, CSVException {
 		try {
-			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			String sortedCensusData = censusAnalyser.getPopulationWiseSortedData();
 			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-			// System.out.println("string is : " + censusCSV[0].state);
-			// System.out.println("string is : " + censusCSV[1].state);
 			Assert.assertEquals("Uttar Pradesh", censusCSV[0].state);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
@@ -98,17 +90,13 @@ public class SystemTestClass {
 	}
 
 //	Sort function basis state density
-	@Ignore
 	@Test
 	public void given_Indian_Census_Data_When_Sorted_Basis_Density_Should_Return_Sorted_Output()
 			throws CensusAnalyserException, CSVException {
 		try {
-			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			String sortedCensusData = censusAnalyser.getDensityWiseSortedData();
 			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-			// System.out.println("string is : " + censusCSV[0].state);
-			// System.out.println("string is : " + censusCSV[1].state);
 			Assert.assertEquals("Uttar Pradesh", censusCSV[0].state);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
@@ -122,12 +110,9 @@ public class SystemTestClass {
 	public void given_Indian_Census_Data_When_Sorted_Basis_Area_Should_Return_Sorted_Output()
 			throws CensusAnalyserException, CSVException {
 		try {
-			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			String sortedCensusData = censusAnalyser.getAreaWiseSortedData();
 			IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-			// System.out.println("string is : " + censusCSV[0].state);
-			// System.out.println("string is : " + censusCSV[1].state);
 			Assert.assertEquals("Maharashtra", censusCSV[0].state);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
@@ -136,7 +121,6 @@ public class SystemTestClass {
 		}
 	}
 
-	
 	// Handles exception when wrong file is given as an input to loadIndiaCensusData
 	// function
 	// TC1.2
@@ -210,17 +194,13 @@ public class SystemTestClass {
 		}
 	}
 
-	@Ignore
 	@Test
 	public void given_Indian_State_CSV_Data_When_Sorted_Basis_State_Should_Return_Sorted_Output()
 			throws CensusAnalyserException, CSVException {
 		try {
-			// censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
 			censusAnalyser.loadStateCode(INDIAN_CSV_STATE_PATH);
 			String sortedCensusData = censusAnalyser.getStateCodeWiseSortedData();
 			IndiaStateCodeCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaStateCodeCSV[].class);
-			// System.out.println("string is : " + censusCSV[0].state);
-			// System.out.println("string is : " + censusCSV[1].state);
 			Assert.assertEquals("J&K", censusCSV[0].StateCode);
 		} catch (CensusAnalyserException e) {
 			// TODO: handle exception
